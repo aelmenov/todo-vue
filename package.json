@@ -1,0 +1,29 @@
+{
+  "name": "todo-vue",
+  "version": "1.0.0",
+  "description": "Vue TODO Application Example",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aelmenov/todo-vue.git"
+  },
+  "author": "Alex Elmenov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aelmenov/todo-vue/issues"
+  },
+  "homepage": "https://github.com/aelmenov/todo-vue#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "lint-staged": "^13.2.1",
+    "postcss": "^8.4.21",
+    "postcss-preset-env": "^8.3.1",
+    "prettier": "^2.8.7",
+    "tailwindcss": "^3.3.1"
+  }
+}
