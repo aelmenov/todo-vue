@@ -1,44 +1,45 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useAppStore } from '@/stores/app';
-import { useRouter } from 'vue-router';
-import AccessDenied from '@/components/AccessDenied.vue';
-import BackwardButton from '@/components/BackwardButton.vue';
-import FormRow from '@/components/FormRow.vue';
-import { timestampToDateString } from '@/utils/date-time';
-import ButtonSet from '@/components/ButtonSet.vue';
-import { RouteName } from '@/router';
+import { computed } from 'vue'
+import { useAppStore } from '@/stores/app'
+import { useRouter } from 'vue-router'
+import AccessDenied from '@/components/AccessDenied.vue'
+import BackwardButton from '@/components/BackwardButton.vue'
+import FormRow from '@/components/FormRow.vue'
+import { timestampToDateString } from '@/utils/date-time'
+import ButtonSet from '@/components/ButtonSet.vue'
+import { RouteName } from '@/router'
 
-const store = useAppStore();
-const router = useRouter();
+const store = useAppStore()
+const router = useRouter()
 
-const { params } = router.currentRoute.value;
-const userId = Number(params.userId);
-const taskId = Number(params.taskId);
+const { params } = router.currentRoute.value
+const userId = Number(params.userId)
+const taskId = Number(params.taskId)
 
-const task = computed(() => store.getTaskById(taskId, userId));
+const task = computed(() => store.getTaskById(taskId, userId))
 
-const date = timestampToDateString(task.value.timestamp);
-const status = computed(() => task.value.resolved ? 'Resolved' : 'Work in Progress');
-const author = computed(() => store.getUserById(task.value.authorId).name);
-const assignee = computed(() => store.getUserById(task.value.assigneeId).name);
+const date = timestampToDateString(task.value.timestamp)
+const status = computed(() => (task.value.resolved ? 'Resolved' : 'Work in Progress'))
+const author = computed(() => store.getUserById(task.value.authorId).name)
+const assignee = computed(() => store.getUserById(task.value.assigneeId).name)
 
-const canResolve = computed(() => !task.value.resolved && task.value.assigneeId === userId);
-const canEdit = computed(() => !task.value.resolved && task.value.authorId === userId);
+const canResolve = computed(() => !task.value.resolved && task.value.assigneeId === userId)
+const canEdit = computed(() => !task.value.resolved && task.value.authorId === userId)
 
-const handleResolve = () => store.resolveTask(task.value.id);
+const handleResolve = () => store.resolveTask(task.value.id)
 const handleRemove = () => {
-  store.removeTask(task.value.id);
+  store.removeTask(task.value.id)
 
-  router.push({ name: RouteName.User, params: { userId } });
+  router.push({ name: RouteName.User, params: { userId } })
 }
-const handleEdit = () => router.push({
-  name: RouteName.TaskEdit,
-  params: {
-    userId,
-    taskId: task.value.id,
-  }
-});
+const handleEdit = () =>
+  router.push({
+    name: RouteName.TaskEdit,
+    params: {
+      userId,
+      taskId: task.value.id
+    }
+  })
 </script>
 
 <template>
@@ -59,7 +60,6 @@ const handleEdit = () => router.push({
       :can-resolve="canResolve"
       :can-edit="canEdit"
       :can-remove="canEdit"
-
       @resolve="handleResolve"
       @edit="handleEdit"
       @remove="handleRemove"

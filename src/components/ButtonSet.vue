@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import Button from 'primevue/button';
+import Button from 'primevue/button'
 
 export interface Props {
-  canResolve?: boolean;
-  canRemove?: boolean;
-  canEdit?: boolean;
-  create?: boolean;
-  edit?: boolean;
-};
+  canResolve?: boolean
+  canRemove?: boolean
+  canEdit?: boolean
+  create?: boolean
+  edit?: boolean
+}
 
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 </script>
 
 <script lang="ts">
