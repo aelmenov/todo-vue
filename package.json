@@ -1,29 +1,46 @@
 {
   "name": "todo-vue",
-  "version": "1.0.0",
-  "description": "Vue TODO Application Example",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aelmenov/todo-vue.git"
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
   },
-  "author": "Alex Elmenov",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/aelmenov/todo-vue/issues"
+  "dependencies": {
+    "pinia": "^2.0.32",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.26.1",
+    "quill": "^1.3.7",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
   },
-  "homepage": "https://github.com/aelmenov/todo-vue#readme",
   "devDependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/jsdom": "^21.1.0",
+    "@types/node": "^18.14.2",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-typescript": "^11.0.2",
+    "@vue/test-utils": "^2.3.0",
+    "@vue/tsconfig": "^0.1.3",
     "autoprefixer": "^10.4.14",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.38.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "lint-staged": "^13.2.1",
+    "eslint": "^8.34.0",
+    "eslint-plugin-vue": "^9.9.0",
+    "jsdom": "^21.1.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
-    "postcss-preset-env": "^8.3.1",
-    "prettier": "^2.8.7",
-    "tailwindcss": "^3.3.1"
+    "prettier": "^2.8.4",
+    "tailwindcss": "^3.3.1",
+    "typescript": "~4.8.4",
+    "vite": "^4.1.4",
+    "vitest": "^0.29.1",
+    "vue-tsc": "^1.2.0"
   }
 }

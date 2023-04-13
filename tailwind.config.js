@@ -1,7 +1,14 @@
-module.exports = {
-  content: ['./src/**/*.{js,jsx}'],
+import formsPlugin from '@tailwindcss/forms'
+
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.vue",
+  ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'sans': ['"PT Sans"', 'Helvetica', 'Arial', 'sans-serif']
+    }
   },
-  plugins: [],
-};
+  plugins: [formsPlugin],
+}
