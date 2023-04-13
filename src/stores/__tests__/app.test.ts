@@ -22,51 +22,75 @@ describe('app store', () => {
   })
 
   it('getTaskById returns task for current user', ({ expect }) => {
-    expect(store?.getTaskById(0, CURRENT_USER)).toStrictEqual(mockTasks[0])
+    const id = 0
+    const result = store?.getTaskById(id, CURRENT_USER)
+    const expected = mockTasks[0]
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTaskById returns undefined for unknown user', ({ expect }) => {
-    expect(store?.getTaskById(0, UNKNOWN_USER)).toBeUndefined()
+    const id = 0
+    const result = store?.getTaskById(id, UNKNOWN_USER)
+
+    expect(result).toBeUndefined()
   })
 
   it('getTasksByAuthorId returns tasks where author is current user', ({ expect }) => {
-    expect(store?.getTasksByAuthorId(CURRENT_USER)).toStrictEqual(
-      mockTasks.filter(({ authorId }) => authorId === CURRENT_USER)
-    )
+    const result = store?.getTasksByAuthorId(CURRENT_USER)
+    const expected = mockTasks.filter(({ authorId }) => authorId === CURRENT_USER)
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTasksByAuthorId returns empty array for unknown user', ({ expect }) => {
-    expect(store?.getTasksByAuthorId(UNKNOWN_USER)).toStrictEqual([])
+    const result = store?.getTasksByAuthorId(UNKNOWN_USER)
+    const expected: Task[] = []
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTasksByAssigneeId returns tasks where assignee is current user', ({ expect }) => {
-    expect(store?.getTasksByAssigneeId(CURRENT_USER)).toStrictEqual(
-      mockTasks.filter(({ assigneeId }) => assigneeId === CURRENT_USER)
-    )
+    const result = store?.getTasksByAssigneeId(CURRENT_USER)
+    const expected = mockTasks.filter(({ assigneeId }) => assigneeId === CURRENT_USER)
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTasksByAssigneeId returns empty array for unknown user', ({ expect }) => {
-    expect(store?.getTasksByAssigneeId(UNKNOWN_USER)).toStrictEqual([])
+    const result = store?.getTasksByAssigneeId(UNKNOWN_USER)
+    const expected: Task[] = []
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTasksByUserId returns tasks where assignee or author is current user', ({ expect }) => {
-    expect(store?.getTasksByUserId(CURRENT_USER)).toStrictEqual(
-      mockTasks.filter(({ authorId, assigneeId }) =>
-        [authorId, assigneeId].some((x) => x === CURRENT_USER)
-      )
+    const result = store?.getTasksByUserId(CURRENT_USER)
+    const expected = mockTasks.filter(({ authorId, assigneeId }) =>
+      [authorId, assigneeId].some((x) => x === CURRENT_USER)
     )
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getTasksByUserId returns empty array for unknown user', ({ expect }) => {
-    expect(store?.getTasksByUserId(UNKNOWN_USER)).toStrictEqual([])
+    const result = store?.getTasksByUserId(UNKNOWN_USER)
+    const expected: Task[] = []
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getUserById returns user by id', ({ expect }) => {
-    expect(store?.getUserById(CURRENT_USER)).toStrictEqual(mockUsers[CURRENT_USER])
+    const result = store?.getUserById(CURRENT_USER)
+    const expected = mockUsers[CURRENT_USER]
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('getUserById returns undefined for unknown user', ({ expect }) => {
-    expect(store?.getUserById(UNKNOWN_USER)).toBeUndefined()
+    const result = store?.getUserById(UNKNOWN_USER)
+
+    expect(result).toBeUndefined()
   })
 
   it('createTask add new task to store', ({ expect }) => {
@@ -82,28 +106,44 @@ describe('app store', () => {
 
     store?.createTask(temp)
 
-    expect(store?.tasks.at(-1)).toStrictEqual({ id: newId, ...temp })
+    const result = store?.tasks.at(-1)
+    const expected = { id: newId, ...temp }
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('updateTask updates data in task', ({ expect }) => {
+    const id = 0
     const temp: Partial<Task> = {
       title: 'Test'
     }
 
-    store?.updateTask(0, temp)
+    store?.updateTask(id, temp)
 
-    expect(store?.tasks[0]).toStrictEqual({ ...mockTasks[0], ...temp })
+    const result = store?.tasks[id]
+    const expected = { ...mockTasks[id], ...temp }
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('resolveTask change task status', ({ expect }) => {
-    store?.resolveTask(1)
+    const id = 1
 
-    expect(store?.tasks[1]).toStrictEqual({ ...mockTasks[1], resolved: true })
+    store?.resolveTask(id)
+
+    const result = store?.tasks[id]
+    const expected = { ...mockTasks[id], resolved: true }
+
+    expect(result).toStrictEqual(expected)
   })
 
   it('removeTask removes task from store', ({ expect }) => {
-    store?.removeTask(1)
+    const id = 1
 
-    expect(store?.tasks[1].id).not.toBe(1)
+    store?.removeTask(id)
+
+    const result = store?.tasks[id].id
+
+    expect(result).not.toBe(id)
   })
 })

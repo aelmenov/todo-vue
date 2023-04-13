@@ -3,18 +3,30 @@ import { timestampToDateString } from '../date-time'
 
 describe('date-time', () => {
   it('timestampToDateString returns invalid date at undefined', ({ expect }) => {
-    expect(timestampToDateString(undefined as any)).toBe('Invalid Date')
+    const result = timestampToDateString(undefined as any)
+    const expected = 'Invalid Date'
+
+    expect(result).toBe(expected)
   })
 
   it('timestampToDateString returns invalid date at NaN', ({ expect }) => {
-    expect(timestampToDateString(NaN as any)).toBe('Invalid Date')
+    const result = timestampToDateString(NaN as any)
+    const expected = 'Invalid Date'
+
+    expect(result).toBe(expected)
   })
 
   it('timestampToDateString returns zero epoch time at null', ({ expect }) => {
-    expect(timestampToDateString(null as any)).toContain('1/1/1970')
+    const result = timestampToDateString(null as any)
+    const expected = '1/1/1970'
+
+    expect(result).toBe(expected)
   })
 
   it('timestampToDateString returns correct value', ({ expect }) => {
-    expect(timestampToDateString(1681365756900)).toBe('4/13/2023')
+    const result = timestampToDateString(1681365756900)
+    const expected = '4/13/2023'
+
+    expect(result).toBe(expected)
   })
 })
